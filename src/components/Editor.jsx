@@ -15,7 +15,9 @@ export default function CodeEditor({ file }) {
   const [fontSize, setFontSize] = useState(14);
   const [showSettings, setShowSettings] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [updatedCode, setUpdatedCode] = useState("//Select a file to start coding..!");
+  const [updatedCode, setUpdatedCode] = useState(
+    "//Select a file to start coding..!"
+  );
   const [isFixing, setIsFixing] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const monaco = useMonaco();
@@ -92,7 +94,10 @@ export default function CodeEditor({ file }) {
   const generateDocs = async () => {
     setIsLoading(true);
     try {
-      const res = await axios.post("/api/generate-documentation", { code: updatedCode, language: codeLanguage });
+      const res = await axios.post("/api/generate-documentation", {
+        code: updatedCode,
+        language: codeLanguage,
+      });
       const documentation = res.data.documentation;
       const commentedDocs = `\n\n${documentation}`;
       setUpdatedCode((prevCode) => prevCode + commentedDocs);
@@ -106,7 +111,10 @@ export default function CodeEditor({ file }) {
   const fixSyntaxErrors = async () => {
     setIsFixing(true);
     try {
-      const res = await axios.post("/api/get-errors", { code: updatedCode, codeLanguage });
+      const res = await axios.post("/api/get-errors", {
+        code: updatedCode,
+        codeLanguage,
+      });
       if (res.data.fixedCode) {
         setUpdatedCode(res.data.fixedCode);
       }
@@ -138,6 +146,17 @@ export default function CodeEditor({ file }) {
     { name: "High Contrast", value: "hc-black" },
   ];
 
+  // Add this function near the top of your component, after the state declarations
+  const getMonacoLanguage = (language) => {
+    // Map C to C++ for syntax highlighting
+    if (language === "c") return "cpp";
+    return language;
+  };
+
+  // Add this before the return statement
+  console.log("Current language:", codeLanguage);
+  console.log("Monaco language:", getMonacoLanguage(codeLanguage));
+
   return (
     <div
       className={`bg-gray-900 m-2 h-[94%] rounded-xl p-3 ${
@@ -163,7 +182,7 @@ export default function CodeEditor({ file }) {
               <div className="flex gap-3 items-center ">
                 <div className="relative" ref={settingsRef}>
                   <button
-                    className="flex items-center bg-gray-800 text-white p-2 rounded-full shadow-md hover:bg-gray-700 transition ring-1 ring-gray-600"
+                    className="flex hidden items-center bg-gray-800 text-white p-2 rounded-full shadow-md hover:bg-gray-700 transition ring-1 ring-gray-600"
                     onClick={() => setShowSettings(!showSettings)}
                   >
                     <Settings size={16} />
@@ -210,7 +229,8 @@ export default function CodeEditor({ file }) {
                   onClick={generateDocs}
                   disabled={isLoading}
                 >
-                  <Sparkles size={14} /> {isLoading ? "Generating..." : "Docs"}
+                  <Sparkles size={14} />{" "}
+                  {isLoading ? "Generating..." : "Review"}
                 </button>
                 <button
                   className="flex items-center gap-1.5 bg-teal-600 bg-opacity-20 ring-1 ring-teal-600 text-white px-3 py-1.5 rounded-full  shadow-md hover:bg-teal-600 transition disabled:opacity-50 text-xs"
@@ -233,10 +253,11 @@ export default function CodeEditor({ file }) {
               </div>
               <LanguageSelector language={codeLanguage} onSelect={onSelect} />
             </div>
+
             <Editor
               height={isExpanded ? "calc(100vh - 100px)" : "92%"}
               theme={selectedTheme}
-              language={codeLanguage}
+              language={getMonacoLanguage(codeLanguage)}
               defaultValue={CODE_SNIPPETS[codeLanguage]}
               value={updatedCode}
               onMount={onMount}

@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "⚡ SynapseCode ",
+  title: "⚡ CodeRev - AI Code Editor",
   description: "New generated code editor with AI-powered suggestions.",
 };
 

@@ -56,7 +56,7 @@ const Workspace = () => {
       <div className="flex flex-1 overflow-hidden relative">
         {/* File Panel Toggle */}
         <button
-          className="absolute top-1 left-4 z-20 p-2 hover:bg-gray-800 rounded"
+          className=" absolute top-1 left-4 z-20 p-2 hover:bg-gray-800 rounded"
           onClick={() => setIsNavOpen(!isNavOpen)}
         >
             <PanelLeftOpen 
@@ -67,7 +67,7 @@ const Workspace = () => {
 
         {/* Left Side - File & Folder Panel */}
         <nav
-          className={`transition-all duration-300 ${
+          className={` transition-all duration-300 ${
             isNavOpen ? "w-[20%]" : "w-0"
           } overflow-hidden bg-gray-900 border-r border-gray-800 flex flex-col h-full`}
         >
@@ -79,10 +79,10 @@ const Workspace = () => {
         {/* Main - Editor Content */}
         <main className="flex-1 h-full flex flex-col py-2 overflow-auto">
           <div className="flex h-[6%] gap-12 items-center justify-between">
-            <h1 className="text-2xl  w-[40%] text-center border-gray-200 font-mono ml-32">Workspace: <span className="text-indigo-400">{workspaceName}</span></h1>
+            <h1 className="text-2xl  w-[80%] text-center border-gray-200 font-mono ml-32">Workspace: <span className="text-indigo-400">{workspaceName}</span></h1>
             <div className="flex items-center gap-4 ">
-                <div className="flex items-start bg-blue-800 bg-opacity-40 ring-1 ring-blue-500 px-4 py-1 rounded-md gap-2"> <SearchBar workspaceId={workspaceId} /> </div>
-                <span className="text-lg text-gray-200 bg-slate-800 px-4 py-2  rounded-full flex items-center justify-center gap-3">
+                <div className="flex items-start bg-blue-800 hidden bg-opacity-40 ring-1 ring-blue-500 px-4 py-1 rounded-md gap-2"> <SearchBar workspaceId={workspaceId} /> </div>
+                <span className="text-lg hidden text-gray-200 bg-slate-800 px-4 py-2  rounded-full flex items-center justify-center gap-3">
                   <ShowMembers workspaceId={workspaceId} />
                 </span>
             </div>
@@ -107,7 +107,7 @@ const Workspace = () => {
       {
         !isChatOpen && (
             <button
-              className="fixed bottom-6 right-10 z-30 py-3 font-mono px-5 flex items-center gap-2 text-xl bg-teal-700/30 ring-1 ring-teal-500  animate-bounce  hover:bg-teal-800 text-white rounded-full shadow-lg"
+              className=" fixed hidden bottom-6 right-10 z-30 py-3 font-mono px-5 flex items-center gap-2 text-xl bg-teal-700/30 ring-1 ring-teal-500  animate-bounce  hover:bg-teal-800 text-white rounded-full shadow-lg"
               onClick={() => setIsChatOpen(!isChatOpen)}
             >
              <MessageCircle className="h-8 w-8 " /> AI-Chat

@@ -120,7 +120,7 @@ export default function SearchBar({ workspaceId }) {
 
           {loading && <div className="text-gray-400 text-center mt-2">Loading...</div>}
 
-          <div className="mt-2 max-h-60 overflow-y-auto">
+          <div className=" mt-2 max-h-60 overflow-y-auto">
             {users.map((user) => (
               <div key={user.id} className="flex justify-between items-center p-2 hover:bg-gray-800 rounded-md">
                 <span className="text-white text-sm">{user.email}</span>
