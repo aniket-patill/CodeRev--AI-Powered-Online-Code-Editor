@@ -81,8 +81,8 @@ const Workspace = () => {
           <div className="flex h-[6%] gap-12 items-center justify-between">
             <h1 className="text-2xl  w-[80%] text-center border-gray-200 font-mono ml-32">Workspace: <span className="text-indigo-400">{workspaceName}</span></h1>
             <div className="flex items-center gap-4 ">
-                <div className="flex items-start bg-blue-800 hidden bg-opacity-40 ring-1 ring-blue-500 px-4 py-1 rounded-md gap-2"> <SearchBar workspaceId={workspaceId} /> </div>
-                <span className="text-lg hidden text-gray-200 bg-slate-800 px-4 py-2  rounded-full flex items-center justify-center gap-3">
+                <div className="flex items-start bg-blue-800  bg-opacity-40 ring-1 ring-blue-500 px-4 py-1 rounded-md gap-2"> <SearchBar workspaceId={workspaceId} /> </div>
+                <span className="text-xs  text-gray-200 bg-slate-800 px-2 py-1  rounded-full flex items-center justify-center gap-1">
                   <ShowMembers workspaceId={workspaceId} />
                 </span>
             </div>
@@ -107,7 +107,7 @@ const Workspace = () => {
       {
         !isChatOpen && (
             <button
-              className=" fixed hidden bottom-6 right-10 z-30 py-3 font-mono px-5 flex items-center gap-2 text-xl bg-teal-700/30 ring-1 ring-teal-500  animate-bounce  hover:bg-teal-800 text-white rounded-full shadow-lg"
+              className=" fixed bottom-6 right-10 z-30 py-3 font-mono px-5 flex items-center gap-2 text-xl bg-teal-700/30 ring-1 ring-teal-500  animate-bounce  hover:bg-teal-800 text-white rounded-full shadow-lg"
               onClick={() => setIsChatOpen(!isChatOpen)}
             >
              <MessageCircle className="h-8 w-8 " /> AI-Chat

@@ -189,7 +189,7 @@ const fixSyntaxErrors = async () => {
               <div className="flex gap-3 items-center ">
                 <div className="relative" ref={settingsRef}>
                   <button
-                    className="flex hidden items-center bg-gray-800 text-white p-2 rounded-full shadow-md hover:bg-gray-700 transition ring-1 ring-gray-600"
+                    className="flex items-center bg-gray-800 text-white p-2 rounded-full shadow-md hover:bg-gray-700 transition ring-1 ring-gray-600"
                     onClick={() => setShowSettings(!showSettings)}
                   >
                     <Settings size={16} />
